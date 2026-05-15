@@ -2,6 +2,20 @@
     <h1>Changelog - CS OS Membership Plan Styles</h1>
 
     <div class="version">
+        <h2>🐛 Version 0.1.1 <span class="version-badge">May 14, 2026</span></h2>
+
+        <h3>🐛 Bug Fixes</h3>
+        <ul>
+            <li><strong>Field description rendered as actual HTML element</strong>: the "Inject Default Stylesheet" field's description contained a literal <code>&lt;style&gt;</code> token in the language string. Joomla's admin form renderer interpreted it as a real <code>&lt;style&gt;</code> element, which (a) hid the rest of the description text and (b) broke the surrounding form's Save / Close button click handlers. Replaced with HTML-encoded <code>&amp;lt;style&amp;gt;</code> so it renders as text.</li>
+        </ul>
+
+        <h3>🔧 Improvements</h3>
+        <ul>
+            <li><strong>SQL field query simplified</strong>: switched the Highlighted Plans picker query from aliased-column form to the canonical Joomla-standard form (<code>SELECT id, title</code> with <code>key_field="id"</code> / <code>value_field="title"</code>) used by every other Cybersalt SQL-field picker.</li>
+        </ul>
+    </div>
+
+    <div class="version">
         <h2>🚀 Version 0.1.0 <span class="version-badge">May 14, 2026</span></h2>
 
         <h3>📦 New Features</h3>

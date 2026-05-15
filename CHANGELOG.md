@@ -4,6 +4,14 @@ All notable changes to **cs-osmembership-plan-styles** are documented here.
 
 The format follows [Keep a Changelog](https://keepachangelog.com/), and this project uses [Semantic Versioning](https://semver.org/).
 
+## 🐛 Version 0.1.1 (May 14, 2026)
+
+### 🐛 Bug Fixes
+- **Field description rendered as actual HTML element** — the "Inject Default Stylesheet" field's description contained a literal `<style>` token in the language string. Joomla's admin form renderer interpreted it as a real `<style>` element, which (a) hid the rest of the description text and (b) broke the surrounding form's Save / Close button click handlers. Replaced with HTML-encoded `&lt;style&gt;` so it renders as text.
+
+### 🔧 Improvements
+- **SQL field query simplified** — switched the Highlighted Plans picker query from aliased-column form (`SELECT id AS value, title AS text`) to the canonical Joomla-standard form (`SELECT id, title` with `key_field="id"` / `value_field="title"`) used by every other Cybersalt SQL-field picker. Reduces the chance of any layout-specific column-name assumptions tripping up the fancy-select renderer.
+
 ## 🚀 Version 0.1.0 (May 14, 2026)
 
 ### 📦 New Features
