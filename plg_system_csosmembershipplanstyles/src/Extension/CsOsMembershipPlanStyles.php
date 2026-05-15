@@ -188,6 +188,18 @@ class CsOsMembershipPlanStyles extends CMSPlugin implements SubscriberInterface
         $customCss  = (string) $this->params->get('custom_css', '');
         $defaultCss = '.' . $className . ' { font-weight: 700; }';
 
+        if ($customCss !== '') {
+            // Defense in depth: prevent admin-supplied CSS from closing the
+            // <style> tag or sneaking a <script> open. Admins with plugin-edit
+            // permission are trusted, but a typo or copy-paste from a hostile
+            // snippet shouldn't escalate to script execution.
+            $customCss = preg_replace(
+                ['#</\s*style#i', '#<\s*script#i'],
+                ['<\\/style', '<\\/script'],
+                $customCss
+            ) ?? '';
+        }
+
         $css = $defaultCss;
 
         if ($customCss !== '') {
