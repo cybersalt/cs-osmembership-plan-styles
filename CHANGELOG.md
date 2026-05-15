@@ -4,6 +4,11 @@ All notable changes to **cs-osmembership-plan-styles** are documented here.
 
 The format follows [Keep a Changelog](https://keepachangelog.com/), and this project uses [Semantic Versioning](https://semver.org/).
 
+## ✨ Version 0.1.2 (May 14, 2026)
+
+### ✨ Improvements
+- **Display name spells out "Cybersalt"** — the plugin's name in the Joomla Plugins list, in plugin settings, in the post-install card title, and in the Update Manager's version-available listing now reads *Cybersalt OS Membership Plan Styles* instead of *CS OS Membership Plan Styles*. Folder names, namespaces, and the default CSS class (`cs-osm-premium-member`) are unchanged — they are technical identifiers, not user-facing labels.
+
 ## 🐛 Version 0.1.1 (May 14, 2026)
 
 ### 🐛 Bug Fixes
