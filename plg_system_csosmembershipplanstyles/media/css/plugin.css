@@ -1,0 +1,11 @@
+/*
+ * cs-osmembership-plan-styles — default frontend stylesheet
+ *
+ * The plugin injects an inline <style> block at runtime keyed on the CSS class
+ * configured in plugin settings. This file ships so the template can load it
+ * via Web Asset Manager instead of relying on inline injection, if preferred.
+ */
+
+.cs-osm-premium-member {
+    font-weight: 700;
+}

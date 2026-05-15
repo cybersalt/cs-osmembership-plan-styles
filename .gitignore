@@ -1,0 +1,15 @@
+# IDE
+.idea/
+.vscode/
+*.sublime-*
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Build artifacts
+*.zip
+dist/
+
+# Claude
+.claude/

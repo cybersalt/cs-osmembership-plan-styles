@@ -1,0 +1,35 @@
+<div class="changelog-container">
+    <h1>Changelog - CS OS Membership Plan Styles</h1>
+
+    <div class="version">
+        <h2>🚀 Version 0.1.0 <span class="version-badge">May 14, 2026</span></h2>
+
+        <h3>📦 New Features</h3>
+        <ul>
+            <li><strong>Initial release</strong>: Joomla 5 / 6 system plugin that highlights OS Membership directory entries for members on selected plans.</li>
+            <li><strong>Plan picker</strong>: Multi-select of published OS Membership plans, sourced live from <code>#__osmembership_plans</code>.</li>
+            <li><strong>Configurable CSS class</strong>: Default <code>cs-osm-premium-member</code>; sanitised to a safe CSS identifier before injection.</li>
+            <li><strong>Default stylesheet injection</strong>: Inline <code>&lt;style&gt;</code> block emits a <code>font-weight: 700</code> rule for the chosen class; toggle off if the template handles styling.</li>
+            <li><strong>Custom CSS textarea</strong>: Free-form CSS appended to the injected stylesheet for site-specific tweaks.</li>
+            <li><strong><code>onAfterRender</code> event subscription</strong>: Plugin runs after Joomla has built the full HTML response, so it works regardless of which OS Membership view rendered the directory page.</li>
+            <li><strong>Update server</strong>: Manifest points at <code>update.xml</code> in the GitHub repo so Joomla's Update Manager can detect new releases.</li>
+            <li><strong>Post-install card</strong>: Cybersalt-branded card with light/dark Atum theme switching and direct links to plugin settings + plugins list.</li>
+            <li><strong>Database error tolerance</strong>: If OS Membership isn't installed (table missing), the plugin fails closed instead of throwing.</li>
+        </ul>
+
+        <h3>🔍 Security</h3>
+        <ul>
+            <li>All DB queries use prepared statements with <code>ParameterType::INTEGER</code> bindings.</li>
+            <li>CSS class identifier sanitised to <code>[A-Za-z0-9_-]+</code> before interpolation.</li>
+            <li>Member IDs typed and re-cast to int before being interpolated into the regex.</li>
+            <li>Frontend-only execution (<code>isClient('site')</code> guard).</li>
+            <li>No file writes, no external HTTP, no exec, no eval.</li>
+        </ul>
+
+        <h3>📝 Documentation</h3>
+        <ul>
+            <li>README with installation, configuration, custom-CSS examples, auto-update workflow, and security notes.</li>
+            <li>HTML changelog kept in sync with <code>CHANGELOG.md</code>.</li>
+        </ul>
+    </div>
+</div>

@@ -1,0 +1,14 @@
+cs-osmembership-plan-styles is licensed under the GNU General Public License,
+version 2 or (at your option) any later version (GPL-2.0-or-later).
+
+The full text of GPL-2.0 is available at:
+
+    https://www.gnu.org/licenses/old-licenses/gpl-2.0.html
+    https://www.gnu.org/licenses/old-licenses/gpl-2.0.txt
+
+TODO: replace this stub with the full GPL-2.0 license text before tagging
+v1.0.0. (Shipping the full text inline triggers an installer/Joomla packaging
+issue under our current build flow; placeholder by design until that's
+resolved.)
+
+Copyright (C) 2026 Cybersalt Consulting Ltd. All rights reserved.

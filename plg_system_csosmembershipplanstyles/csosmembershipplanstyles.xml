@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension type="plugin" group="system" method="upgrade">
+    <name>plg_system_csosmembershipplanstyles</name>
+    <author>Cybersalt</author>
+    <creationDate>2026-05-14</creationDate>
+    <copyright>(C) 2026 Cybersalt. All rights reserved.</copyright>
+    <license>GNU General Public License version 2 or later</license>
+    <authorEmail>support@cybersalt.com</authorEmail>
+    <authorUrl>https://www.cybersalt.com</authorUrl>
+    <version>0.1.0</version>
+    <description>PLG_SYSTEM_CSOSMEMBERSHIPPLANSTYLES_XML_DESCRIPTION</description>
+    <namespace path="src">Cybersalt\Plugin\System\CsOsMembershipPlanStyles</namespace>
+
+    <scriptfile>script.php</scriptfile>
+
+    <files>
+        <folder plugin="csosmembershipplanstyles">services</folder>
+        <folder>src</folder>
+    </files>
+
+    <media destination="plg_system_csosmembershipplanstyles" folder="media">
+        <folder>css</folder>
+        <folder>images</folder>
+    </media>
+
+    <languages>
+        <language tag="en-GB">language/en-GB/plg_system_csosmembershipplanstyles.ini</language>
+        <language tag="en-GB">language/en-GB/plg_system_csosmembershipplanstyles.sys.ini</language>
+    </languages>
+
+    <changelogurl>https://raw.githubusercontent.com/cybersalt/cs-osmembership-plan-styles/main/CHANGELOG.html</changelogurl>
+
+    <updateservers>
+        <server type="extension" priority="1" name="CS OS Membership Plan Styles">https://raw.githubusercontent.com/cybersalt/cs-osmembership-plan-styles/main/update.xml</server>
+    </updateservers>
+
+    <config>
+        <fields name="params">
+            <fieldset name="basic" label="PLG_SYSTEM_CSOSMEMBERSHIPPLANSTYLES_FIELDSET_BASIC">
+                <field
+                    name="plan_intro"
+                    type="note"
+                    label=""
+                    description="PLG_SYSTEM_CSOSMEMBERSHIPPLANSTYLES_NOTE_INTRO"
+                />
+                <field
+                    name="premium_plan_ids"
+                    type="sql"
+                    multiple="true"
+                    layout="joomla.form.field.list-fancy-select"
+                    default=""
+                    label="PLG_SYSTEM_CSOSMEMBERSHIPPLANSTYLES_FIELD_PLAN_IDS_LABEL"
+                    description="PLG_SYSTEM_CSOSMEMBERSHIPPLANSTYLES_FIELD_PLAN_IDS_DESC"
+                    query="SELECT id AS value, title AS text FROM #__osmembership_plans WHERE published = 1 ORDER BY ordering, title"
+                    key_field="value"
+                    value_field="text"
+                />
+                <field
+                    name="css_class"
+                    type="text"
+                    default="cs-osm-premium-member"
+                    label="PLG_SYSTEM_CSOSMEMBERSHIPPLANSTYLES_FIELD_CSS_CLASS_LABEL"
+                    description="PLG_SYSTEM_CSOSMEMBERSHIPPLANSTYLES_FIELD_CSS_CLASS_DESC"
+                    filter="cmd"
+                />
+                <field
+                    name="inject_css"
+                    type="radio"
+                    default="1"
+                    label="PLG_SYSTEM_CSOSMEMBERSHIPPLANSTYLES_FIELD_INJECT_CSS_LABEL"
+                    description="PLG_SYSTEM_CSOSMEMBERSHIPPLANSTYLES_FIELD_INJECT_CSS_DESC"
+                    layout="joomla.form.field.radio.switcher"
+                >
+                    <option value="0">JNO</option>
+                    <option value="1">JYES</option>
+                </field>
+                <field
+                    name="custom_css"
+                    type="textarea"
+                    rows="6"
+                    default=""
+                    label="PLG_SYSTEM_CSOSMEMBERSHIPPLANSTYLES_FIELD_CUSTOM_CSS_LABEL"
+                    description="PLG_SYSTEM_CSOSMEMBERSHIPPLANSTYLES_FIELD_CUSTOM_CSS_DESC"
+                    filter="raw"
+                />
+            </fieldset>
+            <fieldset name="support" label="PLG_SYSTEM_CSOSMEMBERSHIPPLANSTYLES_FIELDSET_SUPPORT">
+                <field
+                    name="support_note"
+                    type="note"
+                    label=""
+                    description="PLG_SYSTEM_CSOSMEMBERSHIPPLANSTYLES_NOTE_SUPPORT"
+                />
+            </fieldset>
+        </fields>
+    </config>
+</extension>
