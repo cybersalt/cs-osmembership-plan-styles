@@ -4,6 +4,11 @@ All notable changes to **cs-osmembership-plan-styles** are documented here.
 
 The format follows [Keep a Changelog](https://keepachangelog.com/), and this project uses [Semantic Versioning](https://semver.org/).
 
+## 🔒 Version 0.1.3 (May 14, 2026)
+
+### 🔒 Security
+- **Install-card HTML now passes through Joomla's `InputFilter`** with a strict allowlist of safe inline tags (`<strong>`, `<em>`, `<b>`, `<i>`, `<a>`, `<br>`) and safe attributes (`href`, `target`, `rel`). The previously-deferred v0.1.0 LOW finding is now resolved: a hostile translation INI file can no longer smuggle `<script>`, `<style>`, `javascript:` URIs, or `on*` event handlers into the post-install card. Legitimate formatting (the bold "Open Plugin Settings" button reference, the cybersalt.com / support / GitHub footer links) still renders normally.
+
 ## ✨ Version 0.1.2 (May 14, 2026)
 
 ### ✨ Improvements

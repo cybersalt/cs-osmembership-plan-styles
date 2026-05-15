@@ -10,6 +10,7 @@
 
 \defined('_JEXEC') or die;
 
+use Joomla\CMS\Filter\InputFilter;
 use Joomla\CMS\Installer\InstallerAdapter;
 use Joomla\CMS\Installer\InstallerScriptInterface;
 use Joomla\CMS\Language\Text;
@@ -62,10 +63,10 @@ return new class () implements ServiceProviderInterface {
                         : 'PLG_SYSTEM_CSOSMEMBERSHIPPLANSTYLES_POSTINSTALL_INSTALLED';
 
                     $title       = $this->escape(Text::_('PLG_SYSTEM_CSOSMEMBERSHIPPLANSTYLES_POSTINSTALL_TITLE'));
-                    $body        = Text::_($bodyKey);
+                    $body        = $this->sanitiseInstallHtml(Text::_($bodyKey));
                     $btnSettings = $this->escape(Text::_('PLG_SYSTEM_CSOSMEMBERSHIPPLANSTYLES_POSTINSTALL_OPEN_SETTINGS'));
                     $btnPlugins  = $this->escape(Text::_('PLG_SYSTEM_CSOSMEMBERSHIPPLANSTYLES_POSTINSTALL_OPEN_PLUGINS'));
-                    $footer      = Text::_('PLG_SYSTEM_CSOSMEMBERSHIPPLANSTYLES_POSTINSTALL_FOOTER_BY');
+                    $footer      = $this->sanitiseInstallHtml(Text::_('PLG_SYSTEM_CSOSMEMBERSHIPPLANSTYLES_POSTINSTALL_FOOTER_BY'));
 
                     $base        = Uri::root();
                     $settingsUrl = $this->escape($base . 'administrator/index.php?option=com_plugins&filter_folder=system&filter_search=csosmembershipplanstyles');
@@ -161,6 +162,27 @@ HTML;
                 private function escape(string $s): string
                 {
                     return htmlspecialchars($s, ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8');
+                }
+
+                /**
+                 * Sanitise an install-card HTML string against a strict tag/attribute allowlist.
+                 *
+                 * Allows only inline formatting and anchor tags that the install-card design
+                 * legitimately uses. Anything else (including <script>, <style>, javascript:
+                 * URIs, on* event handlers) is stripped by Joomla's InputFilter. Defends
+                 * against a hostile translation file that tries to smuggle script execution
+                 * through a language INI.
+                 */
+                private function sanitiseInstallHtml(string $html): string
+                {
+                    $filter = new InputFilter(
+                        ['strong', 'em', 'b', 'i', 'a', 'br'],
+                        ['href', 'target', 'rel'],
+                        InputFilter::ONLY_ALLOW_DEFINED_TAGS,
+                        InputFilter::ONLY_ALLOW_DEFINED_ATTRIBUTES
+                    );
+
+                    return (string) $filter->clean($html, 'html');
                 }
             }
         );

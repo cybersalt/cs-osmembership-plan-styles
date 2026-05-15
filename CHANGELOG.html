@@ -2,6 +2,15 @@
     <h1>Changelog - Cybersalt OS Membership Plan Styles</h1>
 
     <div class="version">
+        <h2>🔒 Version 0.1.3 <span class="version-badge">May 14, 2026</span></h2>
+
+        <h3>🔒 Security</h3>
+        <ul>
+            <li><strong>Install-card HTML now passes through Joomla's <code>InputFilter</code></strong> with a strict allowlist of safe inline tags (<code>&lt;strong&gt;</code>, <code>&lt;em&gt;</code>, <code>&lt;b&gt;</code>, <code>&lt;i&gt;</code>, <code>&lt;a&gt;</code>, <code>&lt;br&gt;</code>) and safe attributes (<code>href</code>, <code>target</code>, <code>rel</code>). The previously-deferred v0.1.0 LOW finding is now resolved: a hostile translation INI file can no longer smuggle <code>&lt;script&gt;</code>, <code>&lt;style&gt;</code>, <code>javascript:</code> URIs, or <code>on*</code> event handlers into the post-install card. Legitimate formatting (the bold "Open Plugin Settings" button reference, the footer links) still renders normally.</li>
+        </ul>
+    </div>
+
+    <div class="version">
         <h2>✨ Version 0.1.2 <span class="version-badge">May 14, 2026</span></h2>
 
         <h3>✨ Improvements</h3>
